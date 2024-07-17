@@ -8,12 +8,12 @@ package com.mycompany.biblioteca2;
  *
  * @author tamir
  */
-public class SolicitaçaoFuncionario extends javax.swing.JFrame {
+public class SolicitaçaohISTORICOFuncionario extends javax.swing.JFrame {
 
     /**
      * Creates new form SolicitaçaoFuncionario
      */
-    public SolicitaçaoFuncionario() {
+    public SolicitaçaohISTORICOFuncionario() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
     }
@@ -39,6 +39,7 @@ public class SolicitaçaoFuncionario extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -109,13 +110,22 @@ public class SolicitaçaoFuncionario extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 102, 204));
-        jButton2.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Microsoft Tai Le", 1, 16)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("NÃO ACEITAR");
         jButton2.setToolTipText("NAOaceitosolicitaçaofuncionario");
         jButton2.setBorder(null);
         jButton2.setPreferredSize(new java.awt.Dimension(94, 28));
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 120, -1));
+
+        jButton3.setBackground(new java.awt.Color(255, 102, 204));
+        jButton3.setFont(new java.awt.Font("Microsoft Tai Le", 1, 16)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 0, 0));
+        jButton3.setText("VER MAIS");
+        jButton3.setToolTipText("vermaissolicitaçõesfuncionarios");
+        jButton3.setBorder(null);
+        jButton3.setPreferredSize(new java.awt.Dimension(98, 30));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/biblioteca2/emprestimohistoricoroxo.png"))); // NOI18N
         jLabel12.setText("jLabel12");
@@ -149,20 +159,21 @@ public class SolicitaçaoFuncionario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SolicitaçaoFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SolicitaçaohISTORICOFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SolicitaçaoFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SolicitaçaohISTORICOFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SolicitaçaoFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SolicitaçaohISTORICOFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SolicitaçaoFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SolicitaçaohISTORICOFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SolicitaçaoFuncionario().setVisible(true);
+                new SolicitaçaohISTORICOFuncionario().setVisible(true);
             }
         });
     }
@@ -170,6 +181,7 @@ public class SolicitaçaoFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
