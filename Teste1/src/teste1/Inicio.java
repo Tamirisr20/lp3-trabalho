@@ -4,6 +4,23 @@
  */
 package teste1;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.UnsupportedLookAndFeelException;
+import teste1.Aluno.LoginAluno;
+import teste1.Funcionario.LoginFunc;
+import teste1.Professor.LoginProf;
+
 /**
  *
  * @author tamir
@@ -13,10 +30,45 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
-    public Inicio() {
+    
+    BufferedImage fundo = null;
+            
+    public Inicio() throws Exception {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
+        
+        setLayout(new BorderLayout());
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setPreferredSize(screenSize);
+        
+        try {
+            fundo = ImageIO.read(new File("/home/solar/NetBeansProjects/Biblioteca/Teste1/src/teste1/cadastro2redimensionado.png"));
+        } 
+        catch (IOException e) {
+            System.err.println("Erro com a imagem" + e.getMessage());
+        }  
+                
+        
+        
+        jLabel1.setSize(this.getLarguraTela(), this.getAlturaTela());
+        Image dimg = fundo.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon icon1 = new ImageIcon(dimg);
+        jLabel1.setIcon(icon1);
+        
     }
+    
+    //altura da tela
+             private int getAlturaTela(){
+		int alt = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+		return alt;
+	}
+
+    //largura da tela
+            private int getLarguraTela(){
+		int larg = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+		return larg;
+	}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,9 +81,9 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        botaoFunc = new javax.swing.JButton();
+        botaoProf = new javax.swing.JButton();
+        botaoAluno = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -40,74 +92,102 @@ public class Inicio extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Microsoft Tai Le", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Bem-Vindo à Biblioteca FDG");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 660, 80));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 680, 80));
 
         jLabel3.setFont(new java.awt.Font("Microsoft New Tai Lue", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("VOCÊ É: ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 180, 60));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 80, 200, 60));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("FUNCIONÁRIO");
-        jButton1.setBorder(null);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 170, 50));
+        botaoFunc.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
+        botaoFunc.setText("FUNCIONÁRIO");
+        botaoFunc.setBorder(null);
+        botaoFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoFuncActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botaoFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 190, 50));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("PROFESSOR");
-        jButton2.setBorder(null);
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 190, 50));
+        botaoProf.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
+        botaoProf.setText("PROFESSOR");
+        botaoProf.setBorder(null);
+        botaoProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoProfActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botaoProf, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 240, 210, 50));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Microsoft New Tai Lue", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setText("ESTUDANTE");
-        jButton3.setBorder(null);
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 180, 50));
+        botaoAluno.setFont(new java.awt.Font("Microsoft New Tai Lue", 1, 18)); // NOI18N
+        botaoAluno.setText("ESTUDANTE");
+        botaoAluno.setBorder(null);
+        botaoAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAlunoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botaoAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 240, 200, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/biblioteca2/cadastro2redimensionado.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("/home/solar/NetBeansProjects/Biblioteca/Teste1/src/teste1/cadastro2redimensionado.png"));
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void botaoFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFuncActionPerformed
+        LoginFunc telaFunc;
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            telaFunc = new LoginFunc();
+            telaFunc.show(true);
+            telaFunc.setVisible(true);
+            telaFunc.pack();
+            telaFunc.setLocationRelativeTo(null);
+            
+            this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro");
         }
-        //</editor-fold>
-        
-        //</editor-fold>
+    }//GEN-LAST:event_botaoFuncActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Inicio().setVisible(true);
-        });
+    private void botaoProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProfActionPerformed
+        LoginProf telaProf;
+        try {
+            telaProf = new LoginProf();
+            telaProf.setVisible(true);
+            telaProf.pack();
+            telaProf.setLocationRelativeTo(null);
+            this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro");
+        }
+    }//GEN-LAST:event_botaoProfActionPerformed
+
+    private void botaoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoActionPerformed
+        LoginAluno telaAluno;
+        try {
+            telaAluno = new LoginAluno();
+            telaAluno.setVisible(true);
+            telaAluno.pack();
+            telaAluno.setLocationRelativeTo(null);
+            this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro");
+        }
+    }//GEN-LAST:event_botaoAlunoActionPerformed
+
+    public static void main (String[] args) throws Exception{
+        Inicio Tela = new Inicio();
+        Tela.setVisible(true);
+        Tela.pack();
+        Tela.setLocationRelativeTo(null); 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton botaoAluno;
+    private javax.swing.JButton botaoFunc;
+    private javax.swing.JButton botaoProf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
