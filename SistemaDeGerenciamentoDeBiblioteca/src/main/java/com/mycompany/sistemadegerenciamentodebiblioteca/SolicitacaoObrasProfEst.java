@@ -15,6 +15,7 @@ public class SolicitacaoObrasProfEst extends javax.swing.JFrame {
      */
     public SolicitacaoObrasProfEst() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**

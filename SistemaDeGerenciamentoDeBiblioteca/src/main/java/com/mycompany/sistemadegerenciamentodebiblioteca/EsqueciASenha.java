@@ -15,6 +15,7 @@ public class EsqueciASenha extends javax.swing.JFrame {
      */
     public EsqueciASenha() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**

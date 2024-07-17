@@ -15,6 +15,7 @@ public class DoaçõesObrasEstProf extends javax.swing.JFrame {
      */
     public DoaçõesObrasEstProf() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -140,7 +141,7 @@ public class DoaçõesObrasEstProf extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/sistemadegerenciamentodebiblioteca/doações ESTUDANTESPROFESSORES.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

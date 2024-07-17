@@ -15,6 +15,7 @@ public class RecuperandoASenha extends javax.swing.JFrame {
      */
     public RecuperandoASenha() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**

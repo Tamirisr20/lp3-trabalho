@@ -15,6 +15,7 @@ public class RespostaDeAjudaFuncionario extends javax.swing.JFrame {
      */
     public RespostaDeAjudaFuncionario() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
