@@ -99,6 +99,7 @@ public class MenuAluno extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1916, 895));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(204, 0, 204));
@@ -213,50 +214,50 @@ public class MenuAluno extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Entre em contato :");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 140, 50));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 140, 50));
 
         jLabel5.setFont(new java.awt.Font("Microsoft Tai Le", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Email:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, 50, 60));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 440, 50, 60));
 
         jLabel6.setFont(new java.awt.Font("Microsoft Tai Le", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("bibliotecafdg@hotmail.br");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, 160, 30));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 160, 30));
 
         jLabel7.setFont(new java.awt.Font("Microsoft Tai Le", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Telefone:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, 80, 40));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 450, 80, 40));
 
         jLabel8.setFont(new java.awt.Font("Microsoft Tai Le", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("(12) 00000-0000");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, 100, 30));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, 100, 30));
 
         jLabel9.setFont(new java.awt.Font("Microsoft Tai Le", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Horário de funcionamento:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 160, 40));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 450, 160, 40));
 
         jLabel10.setFont(new java.awt.Font("Microsoft Tai Le", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Segunda à sexta: 8:00 até 20:00  ");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, 170, 30));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, 170, 30));
 
         jLabel11.setFont(new java.awt.Font("Microsoft Tai Le", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText(" Sábado, Domingo e Feriados: 9:00 até 12:00");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 250, 20));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 490, 250, 20));
 
         jLabel12.setIcon(new javax.swing.ImageIcon("/home/solar/NetBeansProjects/Biblioteca/Teste1/src/teste1/BARRA PINCEL.png"));
         jLabel12.setText("jLabel12");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1880, 560));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("/home/solar/NetBeansProjects/Biblioteca/Teste1/src/teste1/PERFIL_ALUNO_PAGINA_PRINCIPAL[1].png"));
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
