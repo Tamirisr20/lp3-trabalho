@@ -258,7 +258,7 @@ public final class CadastroAluno extends javax.swing.JFrame {
                                 .addGap(5, 5, 5)
                                 .addComponent(jLabel13))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 264, Short.MAX_VALUE)
+                        .addGap(0, 276, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3)
                             .addComponent(jButton2))))
