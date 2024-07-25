@@ -7,6 +7,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -85,7 +88,7 @@ public class CadastroAluno extends javax.swing.JFrame {
         Telefone = new javax.swing.JTextField();
         Matricula = new javax.swing.JTextField();
         Email = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        criarConta = new javax.swing.JButton();
         Senha1 = new javax.swing.JPasswordField();
         Curso = new javax.swing.JTextField();
 
@@ -163,11 +166,11 @@ public class CadastroAluno extends javax.swing.JFrame {
         Email.setBackground(new java.awt.Color(0, 0, 0));
         Email.setForeground(new java.awt.Color(255, 255, 255));
 
-        jButton3.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jButton3.setText("Criar conta");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        criarConta.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        criarConta.setText("Criar conta");
+        criarConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                criarContaActionPerformed(evt);
             }
         });
 
@@ -209,7 +212,7 @@ public class CadastroAluno extends javax.swing.JFrame {
                                 .addGap(287, 287, 287)
                                 .addComponent(jButton2)
                                 .addGap(114, 114, 114)
-                                .addComponent(jButton3)
+                                .addComponent(criarConta)
                                 .addGap(18, 18, 18)
                                 .addComponent(Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -266,9 +269,9 @@ public class CadastroAluno extends javax.swing.JFrame {
                                 .addGap(5, 5, 5)
                                 .addComponent(jLabel13))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 274, Short.MAX_VALUE)
+                        .addGap(0, 264, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
+                            .addComponent(criarConta)
                             .addComponent(jButton2))))
                 .addGap(326, 326, 326))
         );
@@ -317,10 +320,52 @@ public class CadastroAluno extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+    private void criarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarContaActionPerformed
+        usuario user = new usuario();
+                usuarioDao userDAO = null;
+        try {
+            userDAO = new usuarioDao();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+                user.setNome(Nome);
+                user.setMatricula(Matricula);
+                user.setEmail(Email);
+                user.setTelefone(Telefone);
+                user.setCurso(Curso);
+                user.setDataNasc(DataNasc);
+                user.setSenha(Senha);
+        
+                userDAO.cadastrarAluno(user);
+        
+                Nome.setText("");
+                Matricula.setText("");
+                Email.setText("");
+                Senha.setText("");
+                Curso.setText("");
+                DataNasc.setText("");
+                Telefone.setText("");
+        
+                System.setProperty("nome", user.getNome());
+                System.setProperty("matricula", user.getMatricula());
+                System.setProperty("email", user.getEmail());
+                System.setProperty("telefone", user.getTelefone());
+                System.setProperty("dataNasc", user.getDataNasc());
+                System.setProperty("curso", user.getCurso());
+                System.setProperty("senha", user.getSenha());
+        
+                LoginAluno principal;
+        try {
+            principal = new LoginAluno();
+            principal.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(CadastroAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+                this.setVisible(false);
        
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_criarContaActionPerformed
 
     public static void main(String args[]) throws IOException, Exception {
         
@@ -341,9 +386,9 @@ public class CadastroAluno extends javax.swing.JFrame {
     private javax.swing.JPasswordField Senha;
     private javax.swing.JPasswordField Senha1;
     private javax.swing.JTextField Telefone;
+    private javax.swing.JButton criarConta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -6,6 +6,7 @@ package conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,21 +14,27 @@ import java.sql.DriverManager;
  */
 public class Conexao {
     
-    public Connection getConexao()
-    {
+    public Connection getConexao() throws SQLException{
+    
+            Connection conn = null;
+        
         try {
-            Connection conn = DriverManager.getConnection(
-            "jdbc:mysql://localhost:3306/mydb?serverTimezone=UTC",
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/bd_biblioteca?serverTimezone=UTC",
             "root",
             "2006052781");
-     
-        return conn;
-        
         }
         catch (Exception e){
             System.out.println("Erro ao conectar" + e.getMessage());
-            return null;
+            
+        } finally {
+            if (conn != null){
+            conn.close();
+            }
         }
+        return null;
     }
     
 }
+

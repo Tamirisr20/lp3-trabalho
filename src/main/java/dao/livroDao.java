@@ -22,7 +22,7 @@ public class livroDao {
     private Conexao conn;
     private Connection con;
     
-    public livroDao (){
+    public livroDao () throws SQLException{
         this.conn = new Conexao();
         this.con = this.conn.getConexao();
     }

@@ -4,6 +4,7 @@ import Aluno.CadastroAluno;
 import Aluno.LoginAluno;
 import conexao.Conexao;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 
 public class LoginCadastro {
@@ -11,7 +12,7 @@ public class LoginCadastro {
     private Conexao conn;
     private static Connection con;
     
-    public LoginCadastro (){
+    public LoginCadastro () throws SQLException{
         this.conn = new Conexao();
         this.con = this.conn.getConexao();
     }

@@ -24,46 +24,59 @@ import java.util.List;
  */
 public class usuarioDao {
     
-    private Conexao conn;
-    private Connection con;
+    private Conexao conexao;
+    private Connection conn;
     String matriculaLogada = null;
     int idLivro = 0;
     
-    public usuarioDao (){
-        this.conn = new Conexao();
-        this.con = this.conn.getConexao();
+    public usuarioDao () throws SQLException{
+        this.conexao = new Conexao();
+        this.conn = this.conexao.getConexao();
     }
     
-    public boolean cadastrarAluno(usuario nome){
-        String sql = "INSERT INTO usuario (matricula, nome, email, senha, curso, dataNascimento, telefone) values (?, ?, ?, ?, ?, ?, ?)";
-        usuario n = new usuario();
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?serverTimezone=UTC", "root", "2006052781");PreparedStatement stmt = this.con.prepareStatement(sql)){      
-            stmt.setString(1, n.getMatricula());
-            stmt.setString(2, n.getNome());
-            stmt.setString(3, n.getEmail());
-            stmt.setString(4, n.getSenha());
-            stmt.setString(5, n.getCurso());
-            stmt.setString(6, n.getDataNasc());
-            stmt.setString(7, n.getSenha());
-            
-            
-            int linhasAfetadas = stmt.executeUpdate();
-            con.commit();
-            return linhasAfetadas > 0;
-            
+    public boolean cadastrarAluno(usuario user){
+    String sql = "INSERT INTO usuario (matricula, nome, email, senha, curso, dataNascimento, telefone) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    
+    PreparedStatement stmt = null;
+    
+    try{
+        stmt = this.conn.prepareStatement(sql);
+        
+        stmt.setString(1, user.getMatricula());
+        stmt.setString(2, user.getNome());
+        stmt.setString(3, user.getEmail());
+        stmt.setString(4, user.getSenha());
+        stmt.setString(5, user.getCurso());
+        stmt.setString(6, user.getDataNasc());
+        stmt.setString(7, user.getTelefone());
+        
+        int rowsInserted = stmt.executeUpdate();
+        
+        if (rowsInserted > 0) {
+            System.out.println("Usuário cadastrado com sucesso!");
+            return true;
         }
-        catch(Exception e){
-            System.out.println("Erro ao cadastrar" + e.getMessage());
-            return false;
+    } catch (SQLException e) {
+        System.out.println("Erro ao cadastrar usuário: " + e.getMessage());
+    } finally {
+        try {
+            if (stmt != null) {
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao fechar statement: " + e.getMessage());
         }
-                  
     }
+    
+    return false;
+}
+  
     
     public void cadastrarProf(){
         String sql = "INSERT INTO usuario (matricula, nome, email, senha, departamento, cargo) values (?, ?, ?, ?, ?, ?, ?)";
         usuario user = new usuario();
         
-        try (PreparedStatement stmt = this.con.prepareStatement(sql)){      
+        try (PreparedStatement stmt = this.conn.prepareStatement(sql)){      
             stmt.setString(1, user.getMatricula());
             stmt.setString(2, user.getNome());
             stmt.setString(3, user.getEmail());
@@ -71,19 +84,19 @@ public class usuarioDao {
             stmt.setString(5, user.getDepartamento());
             stmt.setString(5, user.getCargo()); 
             
-            stmt.execute();
-            
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+            stmt.executeUpdate();
+           System.out.println("Professor cadastrado com sucesso!");
+    }
+    catch(SQLException e){
+        System.out.println("Erro ao cadastrar professor: " + e.getMessage());
+    }
                   
     }
     
     public boolean login(String login, String senha) throws SQLException{
         String sql = "SELECT * FROM usuario WHERE matricula = ? AND senha = ?";
         
-        try (PreparedStatement stmt = this.con.prepareStatement(sql)){
+        try (PreparedStatement stmt = this.conn.prepareStatement(sql)){
             stmt.setString(1, login);
             stmt.setString(2, senha);
             
@@ -113,7 +126,7 @@ public class usuarioDao {
     public boolean esqueciSenha(String login, String senha) throws SQLException{
         String sql = "update usuario set senha = ? where matricula = ?";
         
-        try (PreparedStatement stmt = this.con.prepareStatement(sql)){
+        try (PreparedStatement stmt = this.conn.prepareStatement(sql)){
             stmt.setString(1, login);
             stmt.setString(2, senha);
             stmt.executeUpdate();
@@ -162,7 +175,7 @@ public class usuarioDao {
     sql.append(" WHERE matricula = ?");
     values.add(matriculaLogada);
     
-    try (PreparedStatement stmt = this.con.prepareStatement(new String(sql))) {
+    try (PreparedStatement stmt = this.conn.prepareStatement(new String(sql))) {
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao fazer doação: " + e.getMessage());
@@ -212,7 +225,7 @@ public class usuarioDao {
     sql.append(" WHERE id = ?");
     values.add(matriculaLogada);
     
-    try (PreparedStatement stmt = this.con.prepareStatement(new String(sql))) {
+    try (PreparedStatement stmt = this.conn.prepareStatement(new String(sql))) {
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao fazer doação: " + e.getMessage());
@@ -220,13 +233,13 @@ public class usuarioDao {
     return false;
     }
     
-    public void fazDoacao(){
+    public void fazDoacao() throws SQLException{
         String sql = "insert into doacao (id) values (FLOOR(1 + RAND() * 100))";
         
         livroDao l = new livroDao();
         l.cadastrarLivro();
         
-        try (PreparedStatement stmt = this.con.prepareStatement(sql)) {
+        try (PreparedStatement stmt = this.conn.prepareStatement(sql)) {
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erro ao fazer doação: " + e.getMessage());
@@ -236,7 +249,7 @@ public class usuarioDao {
     public List<livro> verificarEmprestimo(){
         String sql = "select * from emprestimo where idUsuario = ?";
         List<livro> livros = new ArrayList<>();
-        try (PreparedStatement stmt = this.con.prepareStatement(sql)) {
+        try (PreparedStatement stmt = this.conn.prepareStatement(sql)) {
             stmt.setString(1, matriculaLogada);
             
             try (ResultSet rs = stmt.executeQuery()){
@@ -250,7 +263,7 @@ public class usuarioDao {
                     
                     String sql1 = "select * from livro where idLivro = ?";
                 
-                    try (PreparedStatement stmt1 = this.con.prepareStatement(sql1)){
+                    try (PreparedStatement stmt1 = this.conn.prepareStatement(sql1)){
                         stmt1.setInt(1, idLivro);
                         
                         try(ResultSet rs1 = stmt1.executeQuery()){
@@ -281,7 +294,7 @@ public class usuarioDao {
         
             String sql = "select vencimento, dataEmprestimo from emprestimo where idUsuario = ? and idLivro = ?";
         
-            try (PreparedStatement stmt = this.con.prepareStatement(sql)) {
+            try (PreparedStatement stmt = this.conn.prepareStatement(sql)) {
                 stmt.setString(1, matriculaLogada);
                 stmt.setInt(2, idLivro);
             
@@ -312,7 +325,7 @@ public class usuarioDao {
         LocalDate hoje = LocalDate.now();
         String sql = "select vencimento from emprestimo where idUsuario = ?";
         
-        try (PreparedStatement stmt = this.con.prepareStatement(sql)) {
+        try (PreparedStatement stmt = this.conn.prepareStatement(sql)) {
             stmt.setString(1, matriculaLogada);
             
             try (ResultSet rs = stmt.executeQuery()){
@@ -352,7 +365,7 @@ public class usuarioDao {
         if (verificarStatus().equals("Em andamento")){
             LocalDate novaDataVenci = hoje.plusDays(7);
             
-            try(PreparedStatement stmt = this.con.prepareStatement(sql)){
+            try(PreparedStatement stmt = this.conn.prepareStatement(sql)){
                 stmt.setDate(1, java.sql.Date.valueOf(novaDataVenci));
                 stmt.setString(2, matriculaLogada);
                 stmt.executeUpdate();
