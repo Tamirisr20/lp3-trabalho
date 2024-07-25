@@ -11,14 +11,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import codigo.usuario;
-import static java.lang.reflect.Array.get;
-import static java.nio.file.Paths.get;
 import java.sql.Date;
+import java.sql.DriverManager;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import static javax.swing.UIManager.get;
 
 /**
  *
@@ -36,17 +34,17 @@ public class usuarioDao {
         this.con = this.conn.getConexao();
     }
     
-    public boolean cadastrarAluno(String nome, String matricula, String email, String tel, String mat, String curso, String senha, LocalDate dataNasc){
+    public boolean cadastrarAluno(usuario nome){
         String sql = "INSERT INTO usuario (matricula, nome, email, senha, curso, dataNascimento, telefone) values (?, ?, ?, ?, ?, ?, ?)";
-        
-        try (PreparedStatement stmt = this.con.prepareStatement(sql)){      
-            stmt.setString(1, matricula);
-            stmt.setString(2, nome);
-            stmt.setString(3, email);
-            stmt.setString(4, senha);
-            stmt.setString(5, curso);
-            stmt.setDate(6, java.sql.Date.valueOf(dataNasc));
-            stmt.setString(7, tel);
+        usuario n = new usuario();
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?serverTimezone=UTC", "root", "2006052781");PreparedStatement stmt = this.con.prepareStatement(sql)){      
+            stmt.setString(1, n.getMatricula());
+            stmt.setString(2, n.getNome());
+            stmt.setString(3, n.getEmail());
+            stmt.setString(4, n.getSenha());
+            stmt.setString(5, n.getCurso());
+            stmt.setString(6, n.getDataNasc());
+            stmt.setString(7, n.getSenha());
             
             
             int linhasAfetadas = stmt.executeUpdate();

@@ -5,6 +5,7 @@
 package codigo;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -17,7 +18,7 @@ public class usuario {
     private String senha;
     private String curso;
     private String telefone;
-    private Date dataNasc;
+    private String dataNasc;
     private String departamento;
     private String cargo;
 
@@ -88,13 +89,14 @@ public class usuario {
 
 
 
-    public Date getDataNasc() {
+    public String getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(Date dataNasc) {
+    public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
+
     
     
 }
